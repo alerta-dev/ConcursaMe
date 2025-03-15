@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concurso de Participantes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .background-gif {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: blur(8px);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: rgba(0, 0, 0, 0.8);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #ff6b6b;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.9);
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 8px;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s;
+        }
+
+        .dropdown-content a:hover {
+            background-color: rgba(255, 107, 107, 0.2);
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .banner {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .featured-images {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .featured-image {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            border-radius: 15px;
+            transition: transform 0.3s;
+        }
+
+        .featured-image:hover {
+            transform: scale(1.05);
+        }
+
+        .participants-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .participant-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .participant-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .participant-header {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            cursor: pointer;
+        }
+
+        .participant-profile {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            object-fit: cover;
+            margin-right: 1rem;
+        }
+
+        .participant-info {
+            flex-grow: 1;
+        }
+
+        .participant-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .participant-category {
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
+        .participant-score {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ff6b6b;
+        }
+
+        .dropdown-icon {
+            margin-left: 1rem;
+            transition: transform 0.3s;
+        }
+
+        .dropdown-icon.active {
+            transform: rotate(180deg);
+        }
+
+        .participant-details {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, padding 0.5s ease;
+        }
+
+        .participant-details.active {
+            padding: 1rem;
+            max-height: 500px;
+        }
+
+        .participant-description {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .watch-video {
+            display: inline-block;
+            background-color: #ff6b6b;
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .watch-video:hover {
+            background-color: #ff5252;
+        }
+
+        .filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-button {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .filter-button:hover, .filter-button.active {
+            background-color: #ff6b6b;
+        }
+
+        .ranking-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+        }
+
+        .ranking-table th, .ranking-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .ranking-table th {
+            background-color: rgba(0, 0, 0, 0.3);
+            font-weight: 600;
+        }
+
+        .ranking-table tr:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .rank-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ff6b6b;
+        }
+
+        .rank-profile {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .rank-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .rank-total {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #ff6b6b;
+        }
+
+        @media (max-width: 768px) {
+            .featured-images {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .participants-list {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .ranking-table {
+                font-size: 0.9rem;
+            }
+            
+            .rank-image {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .page-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .featured-images {
+                grid-template-columns: 1fr;
+            }
+            
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .page-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-container">
+        <!-- Aquí va tu GIF de fondo -->
+        <img src="/api/placeholder/1200/800" alt="Background GIF" class="background-gif">
+    </div>
+
+    <nav class="navbar">
+        <a href="#" class="logo">Concurso 2025</a>
+        <div class="nav-links">
+            <a href="#inicio" class="nav-link">Inicio</a>
+            <a href="#registro" class="nav-link">Participantes</a>
+            <a href="#ranking" class="nav-link">Ranking</a>
+            <div class="dropdown">
+                <a href="#rondas" class="nav-link">Rondas</a>
+                <div class="dropdown-content">
+                    <a href="#ronda1">Ronda 1</a>
+                    <a href="#ronda2">Ronda 2</a>
+                    <a href="#ronda3">Ronda 3</a>
+                    <a href="#ronda4">Ronda 4</a>
+                    <a href="#ronda5">Ronda 5</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Página de Inicio -->
+    <section id="inicio" class="container">
+        <img src="/api/placeholder/1200/400" alt="Banner del concurso" class="banner">
+        <h1 class="page-title">Concurso de Talentos 2025</h1>
+        <div class="featured-images">
+            <img src="/api/placeholder/400/300" alt="Imagen destacada 1" class="featured-image">
+            <img src="/api/placeholder/400/300" alt="Imagen destacada 2" class="featured-image">
+            <img src="/api/placeholder/400/300" alt="Imagen destacada 3" class="featured-image">
+        </div>
+    </section>
+
+    <!-- Página de Registro/Participantes -->
+    <section id="registro" class="container" style="display:none;">
+        <h1 class="page-title">Participantes</h1>
+        <div class="participants-list">
+            <!-- Participante 1 -->
+            <div class="participant-card">
+                <div class="participant-header" onclick="toggleDetails(this)">
+                    <img src="/api/placeholder/200/200" alt="Perfil de Ana Gómez" class="participant-profile">
+                    <div class="participant-info">
+                        <h3 class="participant-name">Ana Gómez</h3>
+                        <p class="participant-category">Categoría: Canto</p>
+                    </div>
+                    <span class="participant-score">92</span>
+                    <i class="fas fa-chevron-down dropdown-icon"></i>
+                </div>
+                <div class="participant-details">
+                    <p class="participant-description">Ana obtuvo una puntuación alta debido a su impresionante rango vocal y su perfecta afinación. Su interpretación de "Halo" de Beyoncé fue emotiva y técnicamente impecable.</p>
+                    <a href="https://youtube.com" target="_blank" class="watch-video">Ver Video</a>
+                </div>
+            </div>
+            
+            <!-- Participante 2 -->
+            <div class="participant-card">
+                <div class="participant-header" onclick="toggleDetails(this)">
+                    <img src="/api/placeholder/200/200" alt="Perfil de Carlos Hernández" class="participant-profile">
+                    <div class="participant-info">
+                        <h3 class="participant-name">Carlos Hernández</h3>
+                        <p class="participant-category">Categoría: Baile</p>
+                    </div>
+                    <span class="participant-score">88</span>
+                    <i class="fas fa-chevron-down dropdown-icon"></i>
+                </div>
+                <div class="participant-details">
+                    <p class="participant-description">Carlos demostró una gran técnica y creatividad en su coreografía. Su sincronización con la música y su presencia escénica le valieron una alta puntuación.</p>
+                    <a href="https://youtube.com" target="_blank" class="watch-video">Ver Video</a>
+                </div>
+            </div>
+            
+            <!-- Participante 3 -->
+            <div class="participant-card">
+                <div class="participant-header" onclick="toggleDetails(this)">
+                    <img src="/api/placeholder/200/200" alt="Perfil de Sofía Martínez" class="participant-profile">
+                    <div class="participant-info">
+                        <h3 class="participant-name">Sofía Martínez</h3>
+                        <p class="participant-category">Categoría: Arte</p>
+                    </div>
+                    <span class="participant-score">95</span>
+                    <i class="fas fa-chevron-down dropdown-icon"></i>
+                </div>
+                <div class="participant-details">
+                    <p class="participant-description">La obra de Sofía destacó por su originalidad y profundidad conceptual. Su dominio de la técnica mixta y la composición visual impresionaron a todos los jueces.</p>
+                    <a href="https://youtube.com" target="_blank" class="watch-video">Ver Video</a>
+                </div>
+            </div>
+            
+            <!-- Participante 4 -->
+            <div class="participant-card">
+                <div class="participant-header" onclick="toggleDetails(this)">
+                    <img src="/api/placeholder/200/200" alt="Perfil de Miguel Ángel" class="participant-profile">
+                    <div class="participant-info">
+                        <h3 class="participant-name">Miguel Ángel</h3>
+                        <p class="participant-category">Categoría:

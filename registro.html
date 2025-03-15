@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registro - Torneo XYZ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Estilos generales compartidos */
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: url('background.gif') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+    }
+    .navbar {
+      background: rgba(0, 0, 0, 0.9);
+      display: flex;
+      justify-content: space-around;
+      padding: 1rem 2rem;
+    }
+    .navbar a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .container {
+      margin: 2rem;
+      backdrop-filter: blur(10px);
+      background: rgba(0,0,0,0.5);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.7);
+    }
+    .filter {
+      margin-bottom: 1rem;
+    }
+    .filter label {
+      margin-right: 0.5rem;
+    }
+    .filter select {
+      padding: 0.3rem 0.5rem;
+      border-radius: 5px;
+      border: none;
+      outline: none;
+    }
+    .participants {
+      display: flex;
+      flex-direction: column;
+    }
+    .participant {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+      background: rgba(0, 0, 0, 0.8);
+      border-radius: 10px;
+      padding: 1rem;
+      transition: transform 0.2s;
+    }
+    .participant:hover {
+      transform: scale(1.02);
+    }
+    .participant img {
+      width: 60px;
+      height: 60px;
+      border-radius: 10px;
+      object-fit: cover;
+      margin-right: 1rem;
+    }
+    .score {
+      margin-left: auto;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    /* Etiquetas de categoría */
+    .tag {
+      display: inline-block;
+      padding: 0.2rem 0.5rem;
+      border-radius: 5px;
+      margin-left: 1rem;
+      font-weight: bold;
+    }
+    .rojo { background-color: #ff4d4d; }
+    .verde { background-color: #3ae374; }
+    .azul { background-color: #1e90ff; }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="index.html">Inicio</a>
+    <a href="registro.html">Registro</a>
+    <a href="ranking.html">Ranking</a>
+    <a href="rondas.html">Rondas</a>
+  </nav>
+
+  <!-- REGISTRO: Lista de participantes -->
+  <section id="registro" class="container">
+    <h2>Registro de Participantes</h2>
+    <div class="filter">
+      <label for="category-filter">Filtrar por categoría:</label>
+      <select id="category-filter">
+        <option value="all">Todos</option>
+        <option value="rojo">Rojo</option>
+        <option value="verde">Verde</option>
+        <option value="azul">Azul</option>
+      </select>
+    </div>
+    <div id="participants" class="participants">
+      <!-- Participante Ejemplo - Rojo -->
+      <div class="participant" data-category="rojo">
+        <img src="profile1.jpg" alt="Participante 1">
+        <div>
+          <h3>Jimmy Mclovin <span class="tag rojo">Rojo</span></h3>
+          <p>Nota Win: 09.90</p>
+          <p>Nota Ozzy: 07.70</p>
+          <p>Nota Raiyuga: 08.50</p>
+          <p>Nota Wolf: 09.40</p>
+        </div>
+        <div class="score" style="color: #6eff3e;">09.38</div>
+      </div>
+      <!-- Participante Ejemplo - Verde -->
+      <div class="participant" data-category="verde">
+        <img src="profile2.jpg" alt="Participante 2">
+        <div>
+          <h3>Laura Johnson <span class="tag verde">Verde</span></h3>
+          <p>Nota Win: 08.50</p>
+          <p>Nota Ozzy: 09.00</p>
+          <p>Nota Raiyuga: 07.75</p>
+          <p>Nota Wolf: 08.90</p>
+        </div>
+        <div class="score" style="color: #6eff3e;">08.54</div>
+      </div>
+      <!-- Participante Ejemplo - Azul -->
+      <div class="participant" data-category="azul">
+        <img src="profile3.jpg" alt="Participante 3">
+        <div>
+          <h3>Marcos Pérez <span class="tag azul">Azul</span></h3>
+          <p>Nota Win: 09.80</p>
+          <p>Nota Ozzy: 08.50</p>
+          <p>Nota Raiyuga: 09.00</p>
+          <p>Nota Wolf: 09.20</p>
+        </div>
+        <div class="score" style="color: #6eff3e;">09.13</div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Filtro de categorías
+    const categorySelect = document.getElementById('category-filter');
+    const participantItems = document.querySelectorAll('.participant');
+
+    categorySelect.addEventListener('change', function() {
+      const selectedCategory = this.value;
+      participantItems.forEach(participant => {
+        const participantCategory = participant.getAttribute('data-category');
+        participant.style.display = (selectedCategory === 'all' || participantCategory === selectedCategory) ? 'flex' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>

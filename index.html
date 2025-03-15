@@ -1,221 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Concurso</title>
-    <!-- Tipografía moderna -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-
-    <style>
-        /* Estilos generales */
-        body {
-            margin: 0;
-            font-family: 'Poppins', sans-serif;
-            background: url('background.gif') no-repeat center center fixed;
-            background-size: cover;
-            color: #fff;
-        }
-
-        /* Navbar */
-        .navbar {
-            background: rgba(0, 0, 0, 0.9);
-            display: flex;
-            justify-content: space-between;
-            padding: 1rem 2rem;
-        }
-        .navbar a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 1rem;
-            font-weight: bold;
-        }
-
-        /* Contenedor principal */
-        .container {
-            margin: 2rem;
-            backdrop-filter: blur(10px);
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
-        }
-
-        /* Secciones internas */
-        section {
-            margin-bottom: 3rem;
-        }
-
-        /* Sección INICIO: foto + info torneo */
-        #inicio img {
-            max-width: 100%;
-            border-radius: 10px;
-            margin-top: 1rem;
-        }
-
-        /* Filtro de categorías */
-        .filter {
-            margin-bottom: 1rem;
-        }
-        .filter label {
-            margin-right: 0.5rem;
-        }
-        .filter select {
-            padding: 0.3rem 0.5rem;
-            border-radius: 5px;
-            border: none;
-            outline: none;
-        }
-
-        /* Participantes */
-        .participants {
-            display: flex;
-            flex-direction: column;
-        }
-        .participant {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-            background: rgba(0, 0, 0, 0.8);
-            border-radius: 10px;
-            padding: 1rem;
-            transition: transform 0.2s;
-        }
-        .participant:hover {
-            transform: scale(1.02);
-        }
-        .participant img {
-            width: 60px;
-            height: 60px;
-            border-radius: 10px;
-            object-fit: cover;
-            margin-right: 1rem;
-        }
-        .score {
-            margin-left: auto;
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-        /* Etiquetas de categoría */
-        .tag {
-            display: inline-block;
-            padding: 0.2rem 0.5rem;
-            border-radius: 5px;
-            margin-left: 1rem;
-            font-weight: bold;
-        }
-        .rojo {
-            background-color: #ff4d4d;
-        }
-        .verde {
-            background-color: #3ae374;
-        }
-        .azul {
-            background-color: #1e90ff;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inicio - Torneo XYZ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Estilos generales compartidos */
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: url('background.gif') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+    }
+    .navbar {
+      background: rgba(0, 0, 0, 0.9);
+      display: flex;
+      justify-content: space-around;
+      padding: 1rem 2rem;
+    }
+    .navbar a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .container {
+      margin: 2rem;
+      backdrop-filter: blur(10px);
+      background: rgba(0,0,0,0.5);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.7);
+    }
+    #inicio img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin-top: 1rem;
+    }
+  </style>
 </head>
 <body>
-    <!-- NAVBAR -->
-    <nav class="navbar">
-        <div>
-            <a href="#inicio">Inicio</a>
-            <a href="#registro">Registro</a>
-            <a href="#ranking">Ranking</a>
-            <a href="#rondas">Rondas</a>
-        </div>
-    </nav>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="index.html">Inicio</a>
+    <a href="registro.html">Registro</a>
+    <a href="ranking.html">Ranking</a>
+    <a href="rondas.html">Rondas</a>
+  </nav>
 
-    <!-- INICIO: foto + info torneo -->
-    <section id="inicio" class="container">
-        <h1>Bienvenidos al Torneo XYZ</h1>
-        <p>¡Participa en el torneo más emocionante del año! Aquí encontrarás información sobre fechas, reglas y mucho más.</p>
-        <img src="tu_imagen_del_torneo.jpg" alt="Imagen del Torneo" />
-    </section>
-
-    <!-- REGISTRO: participantes con filtro por categoría -->
-    <section id="registro" class="container">
-        <h2>Registro de Participantes</h2>
-        <div class="filter">
-            <label for="category-filter">Filtrar por categoría:</label>
-            <select id="category-filter">
-                <option value="all">Todos</option>
-                <option value="rojo">Rojo</option>
-                <option value="verde">Verde</option>
-                <option value="azul">Azul</option>
-            </select>
-        </div>
-        <div id="participants" class="participants">
-            <!-- Ejemplo de participante - Rojo -->
-            <div class="participant" data-category="rojo">
-                <img src="profile1.jpg" alt="Participante 1" />
-                <div>
-                    <h3>Jimmy Mclovin <span class="tag rojo">Rojo</span></h3>
-                    <p>Nota Win: 09.90</p>
-                    <p>Nota Ozzy: 07.70</p>
-                    <p>Nota Raiyuga: 08.50</p>
-                    <p>Nota Wolf: 09.40</p>
-                </div>
-                <div class="score" style="color: #6eff3e;">09.38</div>
-            </div>
-            <!-- Ejemplo de participante - Verde -->
-            <div class="participant" data-category="verde">
-                <img src="profile2.jpg" alt="Participante 2" />
-                <div>
-                    <h3>Laura Johnson <span class="tag verde">Verde</span></h3>
-                    <p>Nota Win: 08.50</p>
-                    <p>Nota Ozzy: 09.00</p>
-                    <p>Nota Raiyuga: 07.75</p>
-                    <p>Nota Wolf: 08.90</p>
-                </div>
-                <div class="score" style="color: #6eff3e;">08.54</div>
-            </div>
-            <!-- Ejemplo de participante - Azul -->
-            <div class="participant" data-category="azul">
-                <img src="profile3.jpg" alt="Participante 3" />
-                <div>
-                    <h3>Marcos Pérez <span class="tag azul">Azul</span></h3>
-                    <p>Nota Win: 09.80</p>
-                    <p>Nota Ozzy: 08.50</p>
-                    <p>Nota Raiyuga: 09.00</p>
-                    <p>Nota Wolf: 09.20</p>
-                </div>
-                <div class="score" style="color: #6eff3e;">09.13</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- RANKING: listado de participantes por puntuación acumulada -->
-    <section id="ranking" class="container">
-        <h2>Ranking</h2>
-        <p>Próximamente: listado de participantes con mayor puntuación acumulada.</p>
-        <!-- Aquí se puede implementar la lógica para el ranking final -->
-    </section>
-
-    <!-- RONDAS: detalle de cada ronda -->
-    <section id="rondas" class="container">
-        <h2>Rondas</h2>
-        <p>Aquí podrás ver los detalles de cada ronda, videos, puntuaciones, etc.</p>
-        <!-- Se pueden agregar sub-secciones para Ronda 1, Ronda 2, etc. -->
-    </section>
-
-    <script>
-        // Filtro de categorías para participantes
-        const categorySelect = document.getElementById('category-filter');
-        const participantItems = document.querySelectorAll('.participant');
-
-        categorySelect.addEventListener('change', function() {
-            const selectedCategory = this.value;
-            participantItems.forEach(participant => {
-                const participantCategory = participant.getAttribute('data-category');
-                if (selectedCategory === 'all' || participantCategory === selectedCategory) {
-                    participant.style.display = 'flex';
-                } else {
-                    participant.style.display = 'none';
-                }
-            });
-        });
-    </script>
+  <!-- INICIO: Información del torneo -->
+  <section id="inicio" class="container">
+    <h1>Bienvenidos al Torneo XYZ</h1>
+    <p>¡Participa en el torneo más emocionante del año! Descubre fechas, reglas y toda la información importante.</p>
+    <img src="tu_imagen_del_torneo.jpg" alt="Imagen del Torneo">
+  </section>
 </body>
 </html>

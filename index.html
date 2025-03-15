@@ -313,6 +313,66 @@
             display: block;
         }
 
+        /* Estilos para el formulario de registro */
+        .registration-form {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-input, .form-select {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background-color: rgba(0, 0, 0, 0.3);
+            color: white;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus, .form-select:focus {
+            border-color: #ff6b6b;
+            outline: none;
+        }
+
+        .form-button {
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .form-button:hover {
+            background-color: #ff5252;
+        }
+
+        .tournament-info {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            line-height: 1.8;
+        }
+
+        .category-filters {
+            margin-bottom: 2rem;
+        }
+
         @media (max-width: 768px) {
             .featured-images {
                 grid-template-columns: repeat(2, 1fr);
@@ -361,25 +421,25 @@
     </div>
 
     <nav class="navbar">
-        <a href="#" class="logo">Beyond Loquendo</a>
+        <a href="#" class="logo">Concurso 2025</a>
         <div class="nav-links">
-            <a href="#inicio" class="nav-link" onclick="showSection('inicio')">Inicio</a>
-            <a href="#registro" class="nav-link" onclick="showSection('registro')">Participantes</a>
+            <a href="#" class="nav-link" onclick="showSection('inicio')">Inicio</a>
+            <a href="#" class="nav-link" onclick="showSection('registro')">Participantes</a>
             <a href="#" class="nav-link" onclick="showSection('ranking')">Ranking</a>
             <div class="dropdown">
                 <a href="#" class="nav-link" onclick="showSection('rondas')">Rondas</a>
                 <div class="dropdown-content">
-                    <a href="#ronda1" onclick="showSection('ronda1')">Ronda 1</a>
-                    <a href="#ronda2" onclick="showSection('ronda2')">Ronda 2</a>
-                    <a href="#ronda3" onclick="showSection('ronda3')">Ronda 3</a>
-                    <a href="#ronda4" onclick="showSection('ronda4')">Ronda 4</a>
-                    <a href="#ronda5" onclick="showSection('ronda5')">Ronda 5</a>
+                    <a href="#" onclick="showSection('ronda1')">Ronda 1</a>
+                    <a href="#" onclick="showSection('ronda2')">Ronda 2</a>
+                    <a href="#" onclick="showSection('ronda3')">Ronda 3</a>
+                    <a href="#" onclick="showSection('ronda4')">Ronda 4</a>
+                    <a href="#" onclick="showSection('ronda5')">Ronda 5</a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Página de Inicio -->
+    <!-- Página de Inicio - Solo información del torneo -->
     <section id="inicio" class="container section active">
         <img src="/api/placeholder/1200/400" alt="Banner del concurso" class="banner">
         <h1 class="page-title">Concurso de Talentos 2025</h1>
@@ -388,58 +448,19 @@
             <img src="/api/placeholder/400/300" alt="Imagen destacada 2" class="featured-image">
             <img src="/api/placeholder/400/300" alt="Imagen destacada 3" class="featured-image">
         </div>
-    </section>
-
-    <!-- Página de Registro/Participantes -->
-    <section id="registro" class="container section">
-        <h1 class="page-title">Participantes</h1>
-        <div class="participants-list">
-            <!-- Participante 1 -->
-            <div class="participant-card">
-                <div class="participant-header" onclick="toggleDetails(this)">
-                    <img src="/api/placeholder/200/200" alt="Perfil de Ana Gómez" class="participant-profile">
-                    <div class="participant-info">
-                        <h3 class="participant-name">Ana Gómez</h3>
-                        <p class="participant-category">Categoría: Canto</p>
-                    </div>
-                    <span class="participant-score">92</span>
-                    <i class="fas fa-chevron-down dropdown-icon"></i>
-                </div>
-                <div class="participant-details">
-                    <p class="participant-description">Ana obtuvo una puntuación alta debido a su impresionante rango vocal y su perfecta afinación. Su interpretación de "Halo" de Beyoncé fue emotiva y técnicamente impecable.</p>
-                    <a href="https://youtube.com" target="_blank" class="watch-video">Ver Video</a>
-                </div>
-            </div>
-                </section>
-
-            <!-- Participante 2 -->
-            <div class="participant-card">
-                <div class="participant-header" onclick="toggleDetails(this)">
-                    <img src="/api/placeholder/200/200" alt="Perfil de Carlos Hernández" class="participant-profile">
-                    <div class="participant-info">
-                        <h3 class="participant-name">Carlos Hernández</h3>
-                        <p class="participant-category">Categoría: Baile</p>
-                    </div>
-                    <span class="participant-score">88</span>
-                    <i class="fas fa-chevron-down dropdown-icon"></i>
-                </div>
-                <div class="participant-details">
-                    <p class="participant-description">Carlos demostró una gran técnica y creatividad en su coreografía. Su sincronización con la música y su presencia escénica le valieron una alta puntuación.</p>
-                    <a href="https://youtube.com" target="_blank" class="watch-video">Ver Video</a>
-                </div>
-            </div>
-            
-            <!-- Participante 3 -->
-            <div class="participant-card">
-                <div class="participant-header" onclick="toggleDetails(this)">
-                    <img src="/api/placeholder/200/200" alt="Perfil de Sofía Martínez" class="participant-profile">
-                    <div class="participant-info">
-                        <h3 class="participant-name">Sofía Martínez</h3>
-                        <p class="participant-category">Categoría: Arte</p>
-                    </div>
-                    <span class="participant-score">95</span>
-                    <i class="fas fa-chevron-down dropdown-icon"></i>
-                </div>
-                <div class="participant-details">
-                    <p class="participant-description">La obra de Sofía destacó por su originalidad y profundidad conceptual. Su dominio de la técnica mixta y la composición visual impresionaron a todos los jueces.</p>
-                    <a href="https://youtube.com" target="_blank" class
+        <div class="tournament-info">
+            <h2>Acerca del Concurso</h2>
+            <p>Bienvenidos al Concurso de Talentos 2025, un evento único donde los participantes pueden mostrar sus extraordinarias habilidades en diversas categorías artísticas.</p>
+            <p>Este año, contamos con cinco rondas emocionantes donde los concursantes tendrán la oportunidad de impresionar a nuestro distinguido panel de jueces y acumular puntos para alcanzar la victoria.</p>
+            <h3>Fechas Importantes</h3>
+            <p>Registro: 1-15 de Enero, 2025</p>
+            <p>Ronda 1: 1 de Febrero, 2025</p>
+            <p>Ronda 2: 1 de Marzo, 2025</p>
+            <p>Ronda 3: 1 de Abril, 2025</p>
+            <p>Ronda 4: 1 de Mayo, 2025</p>
+            <p>Ronda 5: 1 de Junio, 2025</p>
+            <p>Gran Final: 15 de Junio, 2025</p>
+            <h3>Categorías</h3>
+            <p>- Canto</p>
+            <p>- Baile</p>
+            <p>- Arte

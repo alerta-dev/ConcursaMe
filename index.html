@@ -303,6 +303,16 @@
             color: #ff6b6b;
         }
 
+        /* Ocultar todas las secciones por defecto */
+        .section {
+            display: none;
+        }
+        
+        /* Mostrar la sección activa */
+        .section.active {
+            display: block;
+        }
+
         @media (max-width: 768px) {
             .featured-images {
                 grid-template-columns: repeat(2, 1fr);
@@ -353,24 +363,24 @@
     <nav class="navbar">
         <a href="#" class="logo">Concurso 2025</a>
         <div class="nav-links">
-            <a href="#inicio" class="nav-link">Inicio</a>
-            <a href="#registro" class="nav-link">Participantes</a>
-            <a href="#ranking" class="nav-link">Ranking</a>
+            <a href="#" class="nav-link" onclick="showSection('inicio')">Inicio</a>
+            <a href="#" class="nav-link" onclick="showSection('registro')">Participantes</a>
+            <a href="#" class="nav-link" onclick="showSection('ranking')">Ranking</a>
             <div class="dropdown">
-                <a href="#rondas" class="nav-link">Rondas</a>
+                <a href="#" class="nav-link" onclick="showSection('rondas')">Rondas</a>
                 <div class="dropdown-content">
-                    <a href="#ronda1">Ronda 1</a>
-                    <a href="#ronda2">Ronda 2</a>
-                    <a href="#ronda3">Ronda 3</a>
-                    <a href="#ronda4">Ronda 4</a>
-                    <a href="#ronda5">Ronda 5</a>
+                    <a href="#" onclick="showSection('ronda1')">Ronda 1</a>
+                    <a href="#" onclick="showSection('ronda2')">Ronda 2</a>
+                    <a href="#" onclick="showSection('ronda3')">Ronda 3</a>
+                    <a href="#" onclick="showSection('ronda4')">Ronda 4</a>
+                    <a href="#" onclick="showSection('ronda5')">Ronda 5</a>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Página de Inicio -->
-    <section id="inicio" class="container">
+    <section id="inicio" class="container section active">
         <img src="/api/placeholder/1200/400" alt="Banner del concurso" class="banner">
         <h1 class="page-title">Concurso de Talentos 2025</h1>
         <div class="featured-images">
@@ -381,7 +391,7 @@
     </section>
 
     <!-- Página de Registro/Participantes -->
-    <section id="registro" class="container" style="display:none;">
+    <section id="registro" class="container section">
         <h1 class="page-title">Participantes</h1>
         <div class="participants-list">
             <!-- Participante 1 -->
@@ -431,14 +441,4 @@
                 </div>
                 <div class="participant-details">
                     <p class="participant-description">La obra de Sofía destacó por su originalidad y profundidad conceptual. Su dominio de la técnica mixta y la composición visual impresionaron a todos los jueces.</p>
-                    <a href="https://youtube.com" target="_blank" class="watch-video">Ver Video</a>
-                </div>
-            </div>
-            
-            <!-- Participante 4 -->
-            <div class="participant-card">
-                <div class="participant-header" onclick="toggleDetails(this)">
-                    <img src="/api/placeholder/200/200" alt="Perfil de Miguel Ángel" class="participant-profile">
-                    <div class="participant-info">
-                        <h3 class="participant-name">Miguel Ángel</h3>
-                        <p class="participant-category">Categoría:
+                    <a href="https://youtube.com" target="_blank" class

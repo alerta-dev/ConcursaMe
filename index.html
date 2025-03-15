@@ -3,83 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Concurso</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('background.gif') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .navbar {
+            background: black;
+            color: white;
+            display: flex;
+            padding: 1rem;
+            justify-content: space-around;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2rem;
+        }
+        .section {
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border-radius: 10px;
+            margin: 20px;
+        }
+        .participant {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 10px;
+            transition: transform 0.2s;
+        }
+        .participant:hover {
+            transform: scale(1.02);
+        }
+        .profile-pic {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+        .video-btn {
+            margin-left: auto;
+            padding: 5px 15px;
+            background: #ff4757;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .video-btn:hover {
+            background: #e84118;
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar">
-        <ul>
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#registro">Registro</a></li>
-            <li><a href="#ranking">Ranking</a></li>
-            <li class="dropdown">
-                <a href="#rondas">Rondas</a>
-                <ul class="dropdown-content">
-                    <li><a href="#ronda1">Ronda 1</a></li>
-                    <li><a href="#ronda2">Ronda 2</a></li>
-                    <li><a href="#ronda3">Ronda 3</a></li>
-                    <li><a href="#ronda4">Ronda 4</a></li>
-                    <li><a href="#ronda5">Ronda 5</a></li>
-                </ul>
-            </li>
-        </ul>
+        <a href="#inicio">Inicio</a>
+        <a href="#registro">Registro</a>
+        <a href="#ranking">Ranking</a>
+        <a href="#rondas">Rondas</a>
     </nav>
-    <section id="inicio">
-        <div class="banner">
-            <h1>Bienvenidos al Concurso</h1>
-            <div class="image-grid">
-                <div class="image-square"></div>
-                <div class="image-square"></div>
-                <div class="image-square"></div>
-            </div>
+
+    <section id="inicio" class="section">
+        <h1>Bienvenidos al Concurso</h1>
+        <div style="display: flex; justify-content: space-around; margin-top: 20px;">
+            <div style="width: 100px; height: 100px; background: white; border-radius: 10px;"></div>
+            <div style="width: 100px; height: 100px; background: white; border-radius: 10px;"></div>
+            <div style="width: 100px; height: 100px; background: white; border-radius: 10px;"></div>
         </div>
     </section>
-    <section id="registro">
+
+    <section id="registro" class="section">
         <h2>Registro de Participantes</h2>
-        <div class="participant-list">
-            <div class="participant">
-                <img src="profile.jpg" alt="Foto de Perfil" class="profile-pic">
-                <div class="participant-info">
-                    <p>Nombre del Participante</p>
-                    <button class="video-btn" onclick="window.open('https://youtube.com')">Ver Video</button>
-                </div>
+        <div class="participant">
+            <img src="profile.jpg" alt="Foto de Perfil" class="profile-pic">
+            <div>
+                <p>Nombre del Participante</p>
+                <button class="video-btn" onclick="window.open('https://youtube.com')">Ver Video</button>
             </div>
         </div>
     </section>
-    <section id="ranking">
+
+    <section id="ranking" class="section">
         <h2>Ranking</h2>
-        <div class="ranking-list">
-            <div class="participant">
-                <img src="profile.jpg" alt="Foto de Perfil" class="profile-pic">
-                <div class="participant-info">
-                    <p>Nombre del Participante</p>
-                    <p>Puntuación: 100</p>
-                </div>
+        <div class="participant">
+            <img src="profile.jpg" alt="Foto de Perfil" class="profile-pic">
+            <div>
+                <p>Nombre del Participante</p>
+                <p>Puntuación: 100</p>
             </div>
         </div>
     </section>
-    <section id="rondas">
+
+    <section id="rondas" class="section">
         <h2>Rondas</h2>
-        <div class="filter">
-            <label for="category">Categoría:</label>
-            <select id="category">
-                <option value="categoria1">Categoría 1</option>
-                <option value="categoria2">Categoría 2</option>
-            </select>
-        </div>
-        <div class="round-list">
-            <div class="participant">
-                <img src="profile.jpg" alt="Foto de Perfil" class="profile-pic">
-                <div class="participant-info">
-                    <p>Nombre del Participante</p>
-                    <p>Puntuación: 90</p>
-                    <button class="video-btn" onclick="window.open('https://youtube.com')">Ver Video</button>
-                    <button class="arrow-btn" onclick="toggleDetails(this)">&#9660;</button>
-                    <div class="details">Explicación del puntaje...</div>
-                </div>
+        <div class="participant">
+            <img src="profile.jpg" alt="Foto de Perfil" class="profile-pic">
+            <div>
+                <p>Nombre del Participante</p>
+                <p>Puntuación: 90</p>
+                <button class="video-btn" onclick="window.open('https://youtube.com')">Ver Video</button>
             </div>
         </div>
     </section>
-    <script src="script.js"></script>
 </body>
 </html>

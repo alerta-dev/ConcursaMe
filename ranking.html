@@ -1,51 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ranking - Torneo XYZ</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: url('background.gif') no-repeat center center fixed;
-      background-size: cover;
-      color: #fff;
-    }
-    .navbar {
-      background: rgba(0, 0, 0, 0.9);
-      display: flex;
-      justify-content: space-around;
-      padding: 1rem 2rem;
-    }
-    .navbar a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .container {
-      margin: 2rem;
-      backdrop-filter: blur(10px);
-      background: rgba(0,0,0,0.5);
-      border-radius: 12px;
-      padding: 2rem;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.7);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Participantes - Activos/Inactivos</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+        }
+        .filter-buttons {
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            margin-right: 10px;
+            border: none;
+            cursor: pointer;
+            background: #333;
+            color: white;
+            border-radius: 5px;
+        }
+        button.active {
+            background: #007bff;
+        }
+        .participants-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+        }
+        .participant {
+            position: relative;
+            width: 100%;
+            padding-top: 100%;
+            overflow: hidden;
+            border-radius: 10px;
+            background: #222;
+            cursor: pointer;
+        }
+        .participant img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .inactive img {
+            filter: grayscale(100%);
+        }
+    </style>
 </head>
 <body>
-  <nav class="navbar">
-    <a href="index.html">Inicio</a>
-    <a href="registro.html">Registro</a>
-    <a href="ranking.html">Ranking</a>
-    <a href="rondas.html">Rondas</a>
-  </nav>
+    <div class="filter-buttons">
+        <button onclick="filterParticipants('all')" class="active">Todos</button>
+        <button onclick="filterParticipants('active')">Activos</button>
+        <button onclick="filterParticipants('inactive')">Inactivos</button>
+    </div>
+    <div class="participants-grid" id="participantsGrid">
+        <a href="https://www.youtube.com/@active1" target="_blank" class="participant active">
+            <img src="https://via.placeholder.com/150" alt="Active 1">
+        </a>
+        <a href="https://www.youtube.com/@inactive1" target="_blank" class="participant inactive">
+            <img src="https://via.placeholder.com/150" alt="Inactive 1">
+        </a>
+        <a href="https://www.youtube.com/@active2" target="_blank" class="participant active">
+            <img src="https://via.placeholder.com/150" alt="Active 2">
+        </a>
+        <a href="https://www.youtube.com/@inactive2" target="_blank" class="participant inactive">
+            <img src="https://via.placeholder.com/150" alt="Inactive 2">
+        </a>
+        <a href="https://www.youtube.com/@active3" target="_blank" class="participant active">
+            <img src="https://via.placeholder.com/150" alt="Active 3">
+        </a>
+    </div>
 
-  <section id="ranking" class="container">
-    <h2>Ranking</h2>
-    <p>Aquí se mostrará el listado de participantes ordenados según su puntuación acumulada.</p>
-    <!-- Implementa la lógica de ranking según tus necesidades -->
-  </section>
+    <script>
+        function filterParticipants(status) {
+            const participants = document.querySelectorAll('.participant');
+            const buttons = document.querySelectorAll('.filter-buttons button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            participants.forEach(participant => {
+                if (status === 'all') {
+                    participant.style.display = 'block';
+                } else if (status === 'active' && participant.classList.contains('active')) {
+                    participant.style.display = 'block';
+                } else if (status === 'inactive' && participant.classList.contains('inactive')) {
+                    participant.style.display = 'block';
+                } else {
+                    participant.style.display = 'none';
+                }
+            });
+        }
+    </script>
 </body>
 </html>

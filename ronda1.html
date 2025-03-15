@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ronda 1 - Torneo XYZ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Estilos generales */
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: url('background.gif') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+    }
+    /* Navbar con dropdown para Rondas */
+    .navbar {
+      background: rgba(0,0,0,0.9);
+      display: flex;
+      justify-content: space-around;
+      padding: 1rem 2rem;
+    }
+    .navbar a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 0.5rem;
+    }
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background: rgba(0,0,0,0.9);
+      min-width: 160px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      z-index: 1;
+    }
+    .dropdown-content a {
+      color: #fff;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+    .dropdown-content a:hover {
+      background: #555;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    /* Contenedor principal */
+    .container {
+      margin: 2rem;
+      backdrop-filter: blur(10px);
+      background: rgba(0,0,0,0.5);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.7);
+    }
+    /* Estilos para la lista de participantes */
+    .participants {
+      display: flex;
+      flex-direction: column;
+    }
+    .participant {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+      background: rgba(0,0,0,0.8);
+      border-radius: 10px;
+      padding: 1rem;
+      transition: transform 0.2s;
+    }
+    .participant:hover {
+      transform: scale(1.02);
+    }
+    .participant img {
+      width: 60px;
+      height: 60px;
+      border-radius: 10px;
+      object-fit: cover;
+      margin-right: 1rem;
+    }
+    .score {
+      margin-left: auto;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #6eff3e;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar con enlaces a las secciones principales y dropdown para rondas -->
+  <nav class="navbar">
+    <a href="index.html">Inicio</a>
+    <a href="registro.html">Registro</a>
+    <a href="ranking.html">Ranking</a>
+    <div class="dropdown">
+      <a href="rondas.html" class="dropbtn">Rondas</a>
+      <div class="dropdown-content">
+        <a href="ronda1.html">Ronda 1</a>
+        <a href="ronda2.html">Ronda 2</a>
+        <a href="ronda3.html">Ronda 3</a>
+        <a href="ronda4.html">Ronda 4</a>
+        <a href="ronda5.html">Ronda 5</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contenido principal para Ronda 1 -->
+  <section class="container">
+    <h2>Ronda 1</h2>
+    <p>Participantes y sus puntuaciones en la Ronda 1.</p>
+    <div class="participants">
+      <!-- Ejemplo de participante en Ronda 1 -->
+      <div class="participant">
+        <img src="profile1.jpg" alt="Participante 1">
+        <div>
+          <h3>Jimmy Mclovin</h3>
+          <p>Nota Ronda 1: 09.50</p>
+        </div>
+        <div class="score">09.50</div>
+      </div>
+      <div class="participant">
+        <img src="profile2.jpg" alt="Participante 2">
+        <div>
+          <h3>Laura Johnson</h3>
+          <p>Nota Ronda 1: 08.80</p>
+        </div>
+        <div class="score">08.80</div>
+      </div>
+      <!-- Agrega más participantes según necesites -->
+    </div>
+  </section>
+</body>
+</html>

@@ -1,466 +1,85 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Concurso de Participantes</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        body {
-            background-color: rgba(0, 0, 0, 0.7);
-            color: #fff;
-            overflow-x: hidden;
-        }
-
-        .background-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-        }
-
-        .background-gif {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: blur(8px);
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-            background-color: rgba(0, 0, 0, 0.8);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #fff;
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-link {
-            color: #fff;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-link:hover {
-            color: #ff6b6b;
-        }
-
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: rgba(0, 0, 0, 0.9);
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-            border-radius: 8px;
-        }
-
-        .dropdown-content a {
-            color: white;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            transition: background-color 0.3s;
-        }
-
-        .dropdown-content a:hover {
-            background-color: rgba(255, 107, 107, 0.2);
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-
-        .banner {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            border-radius: 15px;
-            margin-bottom: 2rem;
-        }
-
-        .page-title {
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 2rem;
-            color: #fff;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .featured-images {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .featured-image {
-            width: 100%;
-            aspect-ratio: 1/1;
-            object-fit: cover;
-            border-radius: 15px;
-            transition: transform 0.3s;
-        }
-
-        .featured-image:hover {
-            transform: scale(1.05);
-        }
-
-        .participants-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .participant-card {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .participant-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .participant-header {
-            display: flex;
-            align-items: center;
-            padding: 1rem;
-            cursor: pointer;
-        }
-
-        .participant-profile {
-            width: 60px;
-            height: 60px;
-            border-radius: 10px;
-            object-fit: cover;
-            margin-right: 1rem;
-        }
-
-        .participant-info {
-            flex-grow: 1;
-        }
-
-        .participant-name {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 0.3rem;
-        }
-
-        .participant-category {
-            font-size: 0.9rem;
-            color: #ccc;
-        }
-
-        .participant-score {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #ff6b6b;
-        }
-
-        .dropdown-icon {
-            margin-left: 1rem;
-            transition: transform 0.3s;
-        }
-
-        .dropdown-icon.active {
-            transform: rotate(180deg);
-        }
-
-        .participant-details {
-            padding: 0;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease, padding 0.5s ease;
-        }
-
-        .participant-details.active {
-            padding: 1rem;
-            max-height: 500px;
-        }
-
-        .participant-description {
-            margin-bottom: 1rem;
-            line-height: 1.6;
-        }
-
-        .watch-video {
-            display: inline-block;
-            background-color: #ff6b6b;
-            color: white;
-            padding: 0.7rem 1.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background-color 0.3s;
-        }
-
-        .watch-video:hover {
-            background-color: #ff5252;
-        }
-
-        .filters {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .filter-button {
-            background-color: rgba(255, 255, 255, 0.1);
-            border: none;
-            color: white;
-            padding: 0.7rem 1.5rem;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .filter-button:hover, .filter-button.active {
-            background-color: #ff6b6b;
-        }
-
-        .ranking-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 2rem;
-        }
-
-        .ranking-table th, .ranking-table td {
-            padding: 1rem;
-            text-align: left;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .ranking-table th {
-            background-color: rgba(0, 0, 0, 0.3);
-            font-weight: 600;
-        }
-
-        .ranking-table tr:hover {
-            background-color: rgba(255, 255, 255, 0.05);
-        }
-
-        .rank-number {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #ff6b6b;
-        }
-
-        .rank-profile {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .rank-image {
-            width: 50px;
-            height: 50px;
-            border-radius: 10px;
-            object-fit: cover;
-        }
-
-        .rank-total {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #ff6b6b;
-        }
-
-        /* Ocultar todas las secciones por defecto */
-        .section {
-            display: none;
-        }
-        
-        /* Mostrar la sección activa */
-        .section.active {
-            display: block;
-        }
-
-        /* Estilos para el formulario de registro */
-        .registration-form {
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 2rem;
-            border-radius: 15px;
-            margin-bottom: 2rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-
-        .form-input, .form-select {
-            width: 100%;
-            padding: 0.75rem;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            background-color: rgba(0, 0, 0, 0.3);
-            color: white;
-            transition: border-color 0.3s;
-        }
-
-        .form-input:focus, .form-select:focus {
-            border-color: #ff6b6b;
-            outline: none;
-        }
-
-        .form-button {
-            background-color: #ff6b6b;
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: background-color 0.3s;
-        }
-
-        .form-button:hover {
-            background-color: #ff5252;
-        }
-
-        .tournament-info {
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 2rem;
-            border-radius: 15px;
-            margin: 2rem 0;
-            line-height: 1.8;
-        }
-
-        .category-filters {
-            margin-bottom: 2rem;
-        }
-
-        @media (max-width: 768px) {
-            .featured-images {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .participants-list {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            }
-            
-            .ranking-table {
-                font-size: 0.9rem;
-            }
-            
-            .rank-image {
-                width: 40px;
-                height: 40px;
-            }
-            
-            .page-title {
-                font-size: 2.5rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .featured-images {
-                grid-template-columns: 1fr;
-            }
-            
-            .navbar {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .page-title {
-                font-size: 2rem;
-            }
-        }
-    </style>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Concurso</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="background-container">
-        <!-- Aquí va tu GIF de fondo -->
-        <img src="/api/placeholder/1200/800" alt="Background GIF" class="background-gif">
-    </div>
-
     <nav class="navbar">
-        <a href="#" class="logo">Concurso 2025</a>
-        <div class="nav-links">
-            <a href="#" class="nav-link" onclick="showSection('inicio')">Inicio</a>
-            <a href="#" class="nav-link" onclick="showSection('registro')">Participantes</a>
-            <a href="#" class="nav-link" onclick="showSection('ranking')">Ranking</a>
-            <div class="dropdown">
-                <a href="#" class="nav-link" onclick="showSection('rondas')">Rondas</a>
-                <div class="dropdown-content">
-                    <a href="#" onclick="showSection('ronda1')">Ronda 1</a>
-                    <a href="#" onclick="showSection('ronda2')">Ronda 2</a>
-                    <a href="#" onclick="showSection('ronda3')">Ronda 3</a>
-                    <a href="#" onclick="showSection('ronda4')">Ronda 4</a>
-                    <a href="#" onclick="showSection('ronda5')">Ronda 5</a>
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#registro">Registro</a></li>
+            <li><a href="#ranking">Ranking</a></li>
+            <li class="dropdown">
+                <a href="#rondas">Rondas</a>
+                <ul class="dropdown-content">
+                    <li><a href="#ronda1">Ronda 1</a></li>
+                    <li><a href="#ronda2">Ronda 2</a></li>
+                    <li><a href="#ronda3">Ronda 3</a></li>
+                    <li><a href="#ronda4">Ronda 4</a></li>
+                    <li><a href="#ronda5">Ronda 5</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <section id="inicio">
+        <div class="banner">
+            <h1>Bienvenidos al Concurso</h1>
+            <div class="image-grid">
+                <div class="image-square"></div>
+                <div class="image-square"></div>
+                <div class="image-square"></div>
+            </div>
+        </div>
+    </section>
+    <section id="registro">
+        <h2>Registro de Participantes</h2>
+        <div class="participant-list">
+            <div class="participant">
+                <img src="profile.jpg" alt="Foto de Perfil" class="profile-pic">
+                <div class="participant-info">
+                    <p>Nombre del Participante</p>
+                    <button class="video-btn" onclick="window.open('https://youtube.com')">Ver Video</button>
                 </div>
             </div>
         </div>
-    </nav>
-
-    <!-- Página de Inicio - Solo información del torneo -->
-    <section id="inicio" class="container section active">
-        <img src="/api/placeholder/1200/400" alt="Banner del concurso" class="banner">
-        <h1 class="page-title">Concurso de Talentos 2025</h1>
-        <div class="featured-images">
-            <img src="/api/placeholder/400/300" alt="Imagen destacada 1" class="featured-image">
-            <img src="/api/placeholder/400/300" alt="Imagen destacada 2" class="featured-image">
-            <img src="/api/placeholder/400/300" alt="Imagen destacada 3" class="featured-image">
+    </section>
+    <section id="ranking">
+        <h2>Ranking</h2>
+        <div class="ranking-list">
+            <div class="participant">
+                <img src="profile.jpg" alt="Foto de Perfil" class="profile-pic">
+                <div class="participant-info">
+                    <p>Nombre del Participante</p>
+                    <p>Puntuación: 100</p>
+                </div>
+            </div>
         </div>
-        <div class="tournament-info">
-            <h2>Acerca del Concurso</h2>
-            <p>Bienvenidos al Concurso de Talentos 2025, un evento único donde los participantes pueden mostrar sus extraordinarias habilidades en diversas categorías artísticas.</p>
-            <p>Este año, contamos con cinco rondas emocionantes donde los concursantes tendrán la oportunidad de impresionar a nuestro distinguido panel de jueces y acumular puntos para alcanzar la victoria.</p>
-            <h3>Fechas Importantes</h3>
-            <p>Registro: 1-15 de Enero, 2025</p>
-            <p>Ronda 1: 1 de Febrero, 2025</p>
-            <p>Ronda 2: 1 de Marzo, 2025</p>
-            <p>Ronda 3: 1 de Abril, 2025</p>
-            <p>Ronda 4: 1 de Mayo, 2025</p>
-            <p>Ronda 5: 1 de Junio, 2025</p>
-            <p>Gran Final: 15 de Junio, 2025</p>
-            <h3>Categorías</h3>
-            <p>- Canto</p>
-            <p>- Baile</p>
-            <p>- Arte
+    </section>
+    <section id="rondas">
+        <h2>Rondas</h2>
+        <div class="filter">
+            <label for="category">Categoría:</label>
+            <select id="category">
+                <option value="categoria1">Categoría 1</option>
+                <option value="categoria2">Categoría 2</option>
+            </select>
+        </div>
+        <div class="round-list">
+            <div class="participant">
+                <img src="profile.jpg" alt="Foto de Perfil" class="profile-pic">
+                <div class="participant-info">
+                    <p>Nombre del Participante</p>
+                    <p>Puntuación: 90</p>
+                    <button class="video-btn" onclick="window.open('https://youtube.com')">Ver Video</button>
+                    <button class="arrow-btn" onclick="toggleDetails(this)">&#9660;</button>
+                    <div class="details">Explicación del puntaje...</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="script.js"></script>
+</body>
+</html>

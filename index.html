@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Inicio - Torneo XYZ</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ronda 1 - Torneo XYZ</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    /* Estilos generales compartidos */
+    /* Estilos generales */
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
@@ -14,8 +14,9 @@
       background-size: cover;
       color: #fff;
     }
+    /* Navbar con dropdown para Rondas */
     .navbar {
-      background: rgba(0, 0, 0, 0.9);
+      background: rgba(0,0,0,0.9);
       display: flex;
       justify-content: space-around;
       padding: 1rem 2rem;
@@ -24,7 +25,33 @@
       color: #fff;
       text-decoration: none;
       font-weight: bold;
+      padding: 0.5rem;
     }
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background: rgba(0,0,0,0.9);
+      min-width: 160px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      z-index: 1;
+    }
+    .dropdown-content a {
+      color: #fff;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+    .dropdown-content a:hover {
+      background: #555;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    /* Contenedor principal */
     .container {
       margin: 2rem;
       backdrop-filter: blur(10px);
@@ -33,10 +60,35 @@
       padding: 2rem;
       box-shadow: 0 4px 10px rgba(0,0,0,0.7);
     }
-    #inicio img {
-      max-width: 100%;
+    /* Estilos para la lista de participantes */
+    .participants {
+      display: flex;
+      flex-direction: column;
+    }
+    .participant {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+      background: rgba(0,0,0,0.8);
       border-radius: 10px;
-      margin-top: 1rem;
+      padding: 1rem;
+      transition: transform 0.2s;
+    }
+    .participant:hover {
+      transform: scale(1.02);
+    }
+    .participant img {
+      width: 60px;
+      height: 60px;
+      border-radius: 10px;
+      object-fit: cover;
+      margin-right: 1rem;
+    }
+    .score {
+      margin-left: auto;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #6eff3e;
     }
   </style>
 </head>

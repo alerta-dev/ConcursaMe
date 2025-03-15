@@ -163,17 +163,59 @@
             <div class="participant" data-category="verde">
                 <img src="profile2.jpg" alt="Participante 2" />
                 <div>
-                    <h3>Laura Johnson <span class=\"tag verde\">Verde</span></h3>
+                    <h3>Laura Johnson <span class="tag verde">Verde</span></h3>
                     <p>Nota Win: 08.50</p>
                     <p>Nota Ozzy: 09.00</p>
                     <p>Nota Raiyuga: 07.75</p>
                     <p>Nota Wolf: 08.90</p>
-                </div> 
-                <div class=\"score\" style=\"color: #6eff3e;\">08.54</div></div><!-- Ejemplo de participante - Azul -->\n            
-            <div class=\"participant\" data-category=\"azul\">\n                <img src=\"profile3.jpg\" alt=\"Participante 3\" />\n                <div>\n                    <h3>Marcos Pérez <span class=\"tag azul\">Azul</span></h3>\n                    <p>Nota Win: 09.80</p>\n                    <p>Nota Ozzy: 08.50</p>\n                    <p>Nota Raiyuga: 09.00</p>\n                    <p>Nota Wolf: 09.20</p>\n                </div>\n                <div class=\"score\" style=\"color: #6eff3e;\">09.13</div>\n            </div>\n        </div>\n    </section>
+                </div>
+                <div class="score" style="color: #6eff3e;">08.54</div>
+            </div>
+            <!-- Ejemplo de participante - Azul -->
+            <div class="participant" data-category="azul">
+                <img src="profile3.jpg" alt="Participante 3" />
+                <div>
+                    <h3>Marcos Pérez <span class="tag azul">Azul</span></h3>
+                    <p>Nota Win: 09.80</p>
+                    <p>Nota Ozzy: 08.50</p>
+                    <p>Nota Raiyuga: 09.00</p>
+                    <p>Nota Wolf: 09.20</p>
+                </div>
+                <div class="score" style="color: #6eff3e;">09.13</div>
+            </div>
+        </div>
+    </section>
 
     <!-- RANKING: listado de participantes por puntuación acumulada -->
     <section id="ranking" class="container">
         <h2>Ranking</h2>
         <p>Próximamente: listado de participantes con mayor puntuación acumulada.</p>
-        <!-- Aquí se puede implementar la lógica para el ranking final -->\n    </section>\n\n    <!-- RONDAS: detalle de cada ronda -->\n    <section id=\"rondas\" class=\"container\">\n        <h2>Rondas</h2>\n        <p>Aquí podrás ver los detalles de cada ronda, videos, puntuaciones, etc.</p>\n        <!-- Se pueden agregar sub-secciones para Ronda 1, Ronda 2, etc. -->\n    </section>\n\n    <script>\n        // Filtro de categorías para participantes\n        const categorySelect = document.getElementById('category-filter');\n        const participantItems = document.querySelectorAll('.participant');\n\n        categorySelect.addEventListener('change', function() {\n            const selectedCategory = this.value;\n            participantItems.forEach(participant => {\n                const participantCategory = participant.getAttribute('data-category');\n                if (selectedCategory === 'all' || participantCategory === selectedCategory) {\n                    participant.style.display = 'flex';\n                } else {\n                    participant.style.display = 'none';\n                }\n            });\n        });\n    </script>\n</body>\n</html>\n"}]}
+        <!-- Aquí se puede implementar la lógica para el ranking final -->
+    </section>
+
+    <!-- RONDAS: detalle de cada ronda -->
+    <section id="rondas" class="container">
+        <h2>Rondas</h2>
+        <p>Aquí podrás ver los detalles de cada ronda, videos, puntuaciones, etc.</p>
+        <!-- Se pueden agregar sub-secciones para Ronda 1, Ronda 2, etc. -->
+    </section>
+
+    <script>
+        // Filtro de categorías para participantes
+        const categorySelect = document.getElementById('category-filter');
+        const participantItems = document.querySelectorAll('.participant');
+
+        categorySelect.addEventListener('change', function() {
+            const selectedCategory = this.value;
+            participantItems.forEach(participant => {
+                const participantCategory = participant.getAttribute('data-category');
+                if (selectedCategory === 'all' || participantCategory === selectedCategory) {
+                    participant.style.display = 'flex';
+                } else {
+                    participant.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

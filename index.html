@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Registro - Torneo XYZ</title>
+  <title>Beyond Rebuild</title>
+  <link rel="icon" href="favicon.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
   <!-- Incluir Font Awesome para los íconos -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -11,11 +12,12 @@
   <style>
     /* Estilos compartidos para la página */
     body {
-      margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: url('https://64.media.tumblr.com/90f6cdcbc51c53fa4ca7294da96fc3f8/tumblr_pios19KpQC1ufq8wko1_540.gifv') no-repeat center center fixed;
-      background-size: cover;
-      color: #fff;
+    background-color: white;  /* Fondo blanco */
+    color: white;  /* Texto en negro para buen contraste */
+    margin: 0;  /* Elimina márgenes por defecto */
+    padding: 0; /* Elimina padding por defecto */
+      
     }
     
     .navbar {
@@ -25,11 +27,71 @@
       justify-content: space-around;
       padding: 1rem 2rem;
     }
+    
     .navbar a {
       color: #fff;
       text-decoration: none;
       font-weight: bold;
     }
+    
+      .grid-container {
+            display: grid;
+            grid-template-areas: 
+        "noticia1 noticia1 noticia2"
+        "noticia1 noticia1 noticia5"
+        "noticia3 noticia4 noticia5";
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: auto;
+            grid-gap: 5px;
+        }
+
+        .grid-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .grid-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .grid-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 15px;
+        }
+
+        .category {
+            font-size: 12px;
+            text-transform: uppercase;
+            opacity: 0.7;
+        }
+
+        .title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        /* Asignación de áreas */
+        .noticia1 { grid-area: noticia1; }
+        .noticia2 { grid-area: noticia2; }
+        .noticia3 { grid-area: noticia3; }
+        .noticia4 { grid-area: noticia4; }
+        .noticia5 { grid-area: noticia5; }
+      
+      
     .image-port1 { 
     width: 536.8px;
     height: 400px;
@@ -128,23 +190,247 @@
     width: 500px;
     height: 400px;
 }
+.noticia2 {
+    grid-row: span 2; /* Ocupa dos filas */
+    min-height: 400px;
+    
+}
+.noticia2 img {
+    height: 100%;  /* Hace que la imagen ocupe todo el espacio disponible */
+    width: 100%;   /* Ajusta el ancho automáticamente */
+    object-fit: cover; /* Recorta la imagen para encajar bien */
+}
+    /*---------BANNER--------------*/
 
+.banner {
+    position: relative;
+    height: 80vh;
+    background: url('Dazai PORTADA.png') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    padding: 50px;
+    color: white;
+}
+
+.banner::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Efecto de oscurecimiento */
+}
+
+.banner-content {
+    position: relative;
+    max-width: 600px;
+    z-index: 2;
+}
+
+.banner h1 {
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.banner p {
+    font-size: 18px;
+    margin-top: 10px;
+    line-height: 1.5;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: red;
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background-color: darkred;
+}
+    
+/*fin banner*/
+/*IMAGENES REDONDAS--------------*/
+
+.news-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+}
+
+.news-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    max-width: 300px;
+}
+
+.news-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;  /* Hace la imagen circular */
+    object-fit: cover;   /* Mantiene la proporción sin deformarse */
+    background-color: red; /* Solo si quieres un fondo por defecto */
+}
+
+.news-text {
+    flex: 1;
+}
+
+.news-time {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: gray;
+}
+
+.news-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 5px 0;
+    color: black;
+}
+
+.news-type {
+    font-size: 12px;
+    color: gray;
+}
+    /*IMAGENES REDONDAS FINAL------------*/
+
+    
   </style>
 </head>
 <body>
     <!-- NAVBAR -->
   <nav class="navbar">
+    <a href="index.html">
     <img src="logo.png" alt="Logo" class="logo">
+    </a>
     <a href="index.html">Inicio</a>
-    <a href="registro.html">Registro</a>
     <a href="ranking.html">Ranking</a>
+    <a href="registro.html">Registro</a>
     <a href="rondas.html">Rondas</a>
   </nav>
 
   <!-- INICIO: Información del torneo --> <!--CONTEINER class="container-->
   <section id="inicio">
-  <img src="https://64.media.tumblr.com/91dad312b83f2b01481a28c25e8e32c5/41f279afada44e32-8c/s2048x3072/c6c124fe38338eed51ea8a8acab6bb3e94cd49e2.pnj" alt="imagen portada 1" class="image-port1" >
+
+<!-- BANNNER CON INFO -->
+<div class="banner">
+    <div class="banner-content">
+        <h1>EL BÚCLE FINALMENTE TERMINÓ</h1>
+        <p>En el año 2042, las megacorporaciones se han hecho con el control de las potencias mundiales. 
+        Astra Corp, la corporación más importante del planeta, abrió las puertas al comercio interplanetario 
+        y con ello a muchos conflictos. Su directora actual, Paola Minelli, deberá lidiar con el oscuro pasado 
+        de la corporación y evitar nuevamente el fin del mundo.</p>
+        <a href="#" class="btn">Ver archivo</a>
+    </div>
+</div>
+
+<!-- diiiiv --> 
+<!--aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+
+
+
   
-  </section>
+
+<!--aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+
+<div class="grid-container">
+    <div class="grid-item noticia1">
+        <img src="Dazai PORTADA.png" alt="Noticia 1">
+        <div class="overlay">
+            <div class="category">1</div>
+            <div class="title">NASA Sets Coverage for Crew Launch</div>
+        </div>
+    </div>
+    <div class="grid-item noticia2">
+        <img src="Dazai PORTADA.png" alt="Noticia 2">
+        <div class="overlay">
+            <div class="category">2</div>
+            <div class="title">NASA Receives 10 Nominations for Webby Awards</div>
+        </div>
+    </div>
+    <div class="grid-item noticia3">
+        <img src="Dazai PORTADA.png" alt="Noticia 3">
+        <div class="overlay">
+            <div class="category">3</div>
+            <div class="title">NASA Webb Explores Magnetic Fields</div>
+        </div>
+    </div>
+    <div class="grid-item noticia4">
+        <img src="Dazai PORTADA.png" alt="Noticia 4">
+        <div class="overlay">
+            <div class="category">4</div>
+            <div class="title">NASA's SPHEREx Takes First Images</div>
+        </div>
+    </div>
+</div>
+<!---diiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiv--->
+<!---OMAGENES REDONDAS CON TITULO--->
+
+<div class="news-container">
+    <div class="news-item">
+        <img src="Dazai PORTADA.png" alt="Noticia" class="news-image">
+        <div class="news-text">
+            <p class="news-time">2 MIN READ</p>
+            <h3 class="news-title">“Igna Skyler, la genio detrás de los implantes bio-mecánicos”</h3>
+            <p class="news-type">ARTICLE</p>
+        </div>
+    </div>
+
+    <div class="news-item">
+        <img src="Dazai PORTADA.png" alt="Noticia" class="news-image">
+        <div class="news-text">
+            <p class="news-time">4 MIN READ</p>
+            <h3 class="news-title">“Índice de contrabando se dispara tras apertura de fronteras”</h3>
+            <p class="news-type">ARTICLE</p>
+        </div>
+    </div>
+
+  <div class="news-item">
+        <img src="Dazai PORTADA.png" alt="Noticia" class="news-image">
+        <div class="news-text">
+            <p class="news-time">4 MIN READ</p>
+            <h3 class="news-title">“Índice de contrabando se dispara tras apertura de fronteras”</h3>
+            <p class="news-type">ARTICLE</p>
+        </div>
+    </div>
+
+  <div class="news-item">
+        <img src="Dazai PORTADA.png" alt="Noticia" class="news-image">
+        <div class="news-text">
+            <p class="news-time">4 MIN READ</p>
+            <h3 class="news-title">“Índice de contrabando se dispara tras apertura de fronteras”</h3>
+            <p class="news-type">ARTICLE</p>
+        </div>
+    </div>
+</div>
+
+
+    
+  <!---OTRO BANNER--->
+
+    <div class="banner">
+    <div class="banner-content">
+        <h1>EL BÚCLE FINALMENTE TERMINÓ</h1>
+        <p>En el año 2042, las megacorporaciones se han hecho con el control de las potencias mundiales. 
+        Astra Corp, la corporación más importante del planeta, abrió las puertas al comercio interplanetario 
+        y con ello a muchos conflictos. Su directora actual, Paola Minelli, deberá lidiar con el oscuro pasado 
+        de la corporación y evitar nuevamente el fin del mundo.</p>
+        <a href="#" class="btn">Ver archivo</a>
+    </div>
+</div>
+</section>
 </body>
 </html>

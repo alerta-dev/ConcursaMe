@@ -20,20 +20,64 @@
       
     }
     
-    .navbar {
+ /*-------------------------------------------NAV BAR------------------------------------*/
+.navbar {
       background: rgba(0, 0, 0, 0.9);
       display: flex;
       align-items: center;
       justify-content: space-around;
       padding: 1rem 2rem;
+      position: relative;
     }
-    
+
     .navbar a {
       color: #fff;
       text-decoration: none;
       font-weight: bold;
+      padding: 0.5rem 1rem;
+      position: relative;
     }
-    
+
+    .logo {
+      width: 130px;
+      height: auto;
+    }
+
+    /* Contenedor del submenú */
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #222;
+      min-width: 160px;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
+      border-radius: 5px;
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      color: white;
+      padding: 10px 15px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #333;
+    }
+
+    /* Mostrar submenú al pasar el cursor */
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+  /*------------------------------------------------------------------------------*/
+
       .grid-container {
             display: grid;
             grid-template-areas: 
@@ -387,12 +431,21 @@
   </style>
 </head>
 <body>
-    <!-- NAVBAR -->
-  <nav class="navbar">
+ 
+    <nav class="navbar">
     <a href="index.html">
-    <img src="logo.png" alt="Logo" class="logo">
+      <img src="logo.png" alt="Logo" class="logo">
     </a>
-    <a href="index.html">Inicio</a>
+
+    <div class="dropdown">
+      <a href="index.html">Inicio</a>
+      <div class="dropdown-content">
+        <a href="#categoria1">Categoría 1</a>
+        <a href="#categoria2">Categoría 2</a>
+        <a href="#categoria3">Categoría 3</a>
+      </div>
+    </div>
+
     <a href="ranking.html">Ranking</a>
     <a href="registro.html">Registro</a>
     <a href="rondas.html">Rondas</a>
